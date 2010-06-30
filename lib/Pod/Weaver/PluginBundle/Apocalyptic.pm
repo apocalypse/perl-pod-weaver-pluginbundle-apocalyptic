@@ -103,6 +103,7 @@ It is nearly equivalent to the following in your F<weaver.ini>:
 
 	[Generic / SYNOPSIS]		; move the SYNOPSIS section here, if it exists
 	[Generic / DESCRIPTION]		; move the DESCRIPTION section here ( it is required to exist! )
+	required = 1
 
 	[Collect / ATTRIBUTES]		; get any POD marked as =attr and list them here
 	command = attr
@@ -127,9 +128,9 @@ It is nearly equivalent to the following in your F<weaver.ini>:
 
 =head2 auto image in POD?
 
-=begin HTML
-<p><img src="http://i.imgur.com/Hb2cD.png" width="600"></p>
-=end HTML
+=begin :HTML
+<p><img src="http://www.perl.org/i/icons/camel.png" width="600">Perl Camel!</p>
+=end :HTML
 
 Saw that in http://search.cpan.org/~wonko/Smolder-1.51/lib/Smolder.pm
 
