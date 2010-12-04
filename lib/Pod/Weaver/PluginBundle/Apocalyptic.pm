@@ -70,9 +70,7 @@ sub mvp_bundle_config {
 		[ '@Apocalyptic/ACK',		_exp('Generic'), {
 			header		=> 'ACKNOWLEDGEMENTS',
 		} ],
-		[ '@Apocalyptic/Legal',		_exp('Legal'), {
-			filename	=> 'LICENSE',
-		} ],
+		[ '@Apocalyptic/Legal',		_exp('Legal'), {} ],
 
 		# Mangle the entire POD
 		[ '@Apocalyptic/ListTransformer',	_exp('-Transformer'), {
@@ -119,7 +117,6 @@ It is nearly equivalent to the following in your F<weaver.ini>:
 	[Authors]			; automatically generate the AUTHOR(S) section
 	[Generic / ACKNOWLEDGEMENTS]	; move the ACKNOWLEDGEMENTS section here, if it exists
 	[Legal]				; automatically generate the COPYRIGHT AND LICENSE section
-	filename = LICENSE
 
 	[-Transformer]			; mangle all :list pod into proper lists via L<Pod::Elemental::Transformer::List>
 	transformer = List
