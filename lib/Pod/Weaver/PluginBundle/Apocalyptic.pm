@@ -2,12 +2,11 @@ package Pod::Weaver::PluginBundle::Apocalyptic;
 
 # ABSTRACT: Let the apocalypse generate your POD!
 
-use Pod::Weaver::Config::Assembler 3.100710;
-
 # The plugins we use ( excluding ones bundled in podweaver )
+use Pod::Weaver::Config::Assembler 3.101632;	# basically sets the pod-weaver version
 use Pod::Weaver::Section::SeeAlso 0.001;
 use Pod::Weaver::Section::Support 0.008;
-use Pod::Elemental::Transformer::List 0.093580;
+use Pod::Elemental::Transformer::List 0.101620;
 
 sub _exp {
 	Pod::Weaver::Config::Assembler->expand_package( $_[0] );
@@ -142,5 +141,10 @@ Maybe we can make a transformer to automatically do that? ( =image http://blah.c
 <Apocalypse> i.e. include it in dist as My-Foo-Dist/misc/image.png and link to it via s.c.o's "browse dist" directory
 <Apocalypse> i.e. link to http://cpansearch.perl.org/src/WONKO/Smolder-1.51/misc/image.png
 <Apocalypse> I should try that sneaky tactic and see if it works =]
+
+=head2 Encoding support?
+
+L<Pod::Weaver::Plugin::Encoding> looks cool. Can it be updated to auto-detect the encoding of the POD? Is it really necessary? FLORA uses it, so it
+must be useful, ha! :)
 
 =cut
