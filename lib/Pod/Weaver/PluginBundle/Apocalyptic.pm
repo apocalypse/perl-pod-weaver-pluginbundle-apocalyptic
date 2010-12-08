@@ -64,7 +64,13 @@ sub mvp_bundle_config {
 
 		# The usual end of POD...
 		[ '@Apocalyptic/SeeAlso',	_exp('SeeAlso'), {} ],
-		[ '@Apocalyptic/Support',	_exp('Support'), {} ],
+		[ '@Apocalyptic/Support',	_exp('Support'), {
+			'irc'		=> [
+				'irc.perl.org, #perl-help, Apocalypse',
+				'irc.freenode.net, #perl, Apocal',
+				'irc.efnet.org, #perl, Ap0cal',
+			],
+		} ],
 		[ '@Apocalyptic/Authors',	_exp('Authors'), {} ],
 		[ '@Apocalyptic/ACK',		_exp('Generic'), {
 			header		=> 'ACKNOWLEDGEMENTS',
