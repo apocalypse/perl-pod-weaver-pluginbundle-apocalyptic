@@ -7,6 +7,7 @@ use Pod::Weaver::Config::Assembler 3.101632;	# basically sets the pod-weaver ver
 use Pod::Weaver::Section::SeeAlso 0.001;
 use Pod::Weaver::Section::Support 1.001;
 use Pod::Elemental::Transformer::List 0.101620;
+use Pod::Weaver::Plugin::StopWords 1.000001;
 
 sub _exp {
 	Pod::Weaver::Config::Assembler->expand_package( $_[0] );
@@ -23,11 +24,7 @@ sub mvp_bundle_config {
 			allow_nonpod	=> 1,
 			flatten		=> 0,
 		} ],
-		[ '@Apocalyptic/PodSpelling',	_exp('Region'), {
-			region_name	=> 'stopwords',
-			allow_nonpod	=> 1,
-			flatten		=> 0,
-		} ],
+		[ '@Apocalyptic/StopWords',	_exp('StopWords'), {} ],
 
 		# Start the POD!
 		[ '@Apocalyptic/Name',		_exp('Name'), {} ],
@@ -97,7 +94,7 @@ It is nearly equivalent to the following in your F<weaver.ini>:
 
 	[@CorePrep]			; setup the pod stuff
 	[Region / Pod::Coverage]	; move any Pod::Coverage markers to the top ( =for Pod::Coverage foo bar )
-	[Region / Stopwords]		; move any Pod::Spell markers to the top ( =for stopwords foo bar )
+	[StopWords]			; gather our stopwords and add some extra ones
 
 	[Name]				; automatically generate the NAME section
 	[Version]			; automatically generate the VERSION section
@@ -119,6 +116,9 @@ It is nearly equivalent to the following in your F<weaver.ini>:
 
 	[SeeAlso]			; generate the SEE ALSO section via L<Pod::Weaver::Section::SeeAlso>
 	[Support]			; generate the SUPPORT section via L<Pod::Weaver::Section::Support> ( only present in main module )
+	irc = irc.perl.org, #perl-help, Apocalypse
+	irc = irc.freenode.net, #perl, Apocal
+	irc = irc.efnet.org, #perl, Ap0cal
 	[Authors]			; automatically generate the AUTHOR(S) section
 	[Generic / ACKNOWLEDGEMENTS]	; move the ACKNOWLEDGEMENTS section here, if it exists
 	[Legal]				; automatically generate the COPYRIGHT AND LICENSE section
