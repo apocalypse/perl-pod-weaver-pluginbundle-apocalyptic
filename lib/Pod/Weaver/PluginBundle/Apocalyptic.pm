@@ -5,7 +5,7 @@ package Pod::Weaver::PluginBundle::Apocalyptic;
 # The plugins we use ( excluding ones bundled in podweaver )
 use Pod::Weaver::Config::Assembler 3.101632;	# basically sets the pod-weaver version
 use Pod::Weaver::Section::SeeAlso 0.001;
-use Pod::Weaver::Section::Support 1.001;
+use Pod::Weaver::Section::Support 1.002;
 use Pod::Elemental::Transformer::List 0.101620;
 use Pod::Weaver::Plugin::StopWords 1.000001;
 
@@ -67,6 +67,7 @@ sub mvp_bundle_config {
 				'irc.freenode.net, #perl, Apocal',
 				'irc.efnet.org, #perl, Ap0cal',
 			],
+			'email'		=> 'APOCAL',
 		} ],
 		[ '@Apocalyptic/Authors',	_exp('Authors'), {} ],
 		[ '@Apocalyptic/ACK',		_exp('Generic'), {
@@ -119,6 +120,7 @@ It is nearly equivalent to the following in your F<weaver.ini>:
 	irc = irc.perl.org, #perl-help, Apocalypse
 	irc = irc.freenode.net, #perl, Apocal
 	irc = irc.efnet.org, #perl, Ap0cal
+	email = APOCAL
 	[Authors]			; automatically generate the AUTHOR(S) section
 	[Generic / ACKNOWLEDGEMENTS]	; move the ACKNOWLEDGEMENTS section here, if it exists
 	[Legal]				; automatically generate the COPYRIGHT AND LICENSE section
@@ -152,5 +154,11 @@ Maybe we can make a transformer to automatically do that? ( =image http://blah.c
 
 L<Pod::Weaver::Plugin::Encoding> looks cool. Can it be updated to auto-detect the encoding of the POD? Is it really necessary? FLORA uses it, so it
 must be useful, ha! :)
+
+=head2 add more modules?
+
+Should we add L<Pod::Weaver::Plugin::EnsureUniqueSections>?
+
+Also, is L<Pod::Weaver::Section::WarrantyDisclaimer> needed? Does our Legal section do a good enough job?
 
 =cut
