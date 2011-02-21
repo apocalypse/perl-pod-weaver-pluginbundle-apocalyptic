@@ -6,8 +6,15 @@ package Pod::Weaver::PluginBundle::Apocalyptic;
 use Pod::Weaver::Config::Assembler 3.101632;	# basically sets the pod-weaver version
 use Pod::Weaver::Section::SeeAlso 0.001;
 use Pod::Weaver::Section::Support 1.002;
-use Pod::Elemental::Transformer::List 0.101620;
+use Pod::Weaver::Section::WarrantyDisclaimer 0.103511;
 use Pod::Weaver::Plugin::StopWords 1.000001;
+use Pod::Weaver::Plugin::Encoding 0.01;
+use Pod::Weaver::Plugin::EnsureUniqueSections 0.103531;
+use Pod::Elemental::Transformer::List 0.101620;
+
+# TODO follow up on those local patches:
+# Section::WarrantyDisclaimer - specify the warranty version ( https://github.com/DarwinAwardWinner/Pod-Weaver-Section-WarrantyDisclaimer/pull/1 )
+# Section::Legal - add extra line about LICENSE ( https://github.com/rjbs/pod-weaver/pull/3 )
 
 sub _exp {
 	Pod::Weaver::Config::Assembler->expand_package( $_[0] );
@@ -73,12 +80,21 @@ sub mvp_bundle_config {
 		[ '@Apocalyptic/ACK',		_exp('Generic'), {
 			header		=> 'ACKNOWLEDGEMENTS',
 		} ],
-		[ '@Apocalyptic/Legal',		_exp('Legal'), {} ],
+		[ '@Apocalyptic/Legal',		_exp('Legal'), {
+			license_file	=> 'LICENSE',
+		} ],
+		[ '@Apocalyptic/Warranty',	_exp('WarrantyDisclaimer'), {
+			warranty	=> 'GPL_3',
+		} ],
 
 		# Mangle the entire POD
 		[ '@Apocalyptic/ListTransformer',	_exp('-Transformer'), {
 			transformer	=> 'List',
 		} ],
+		[ '@Apocalyptic/Encoding',		_exp('-Encoding'), {
+			encoding	=> 'utf-8',
+		} ],
+		[ '@Apocalyptic/UniqSections',		_exp('-EnsureUniqueSections'), {} ],
 	);
 }
 
@@ -124,9 +140,15 @@ It is nearly equivalent to the following in your F<weaver.ini>:
 	[Authors]			; automatically generate the AUTHOR(S) section
 	[Generic / ACKNOWLEDGEMENTS]	; move the ACKNOWLEDGEMENTS section here, if it exists
 	[Legal]				; automatically generate the COPYRIGHT AND LICENSE section
+	license_file = LICENSE
+	[WarrantyDisclaimer]		; automatically generate the DISCLAIMER OF WARRANTY section
+	warranty = GPL_3
 
 	[-Transformer]			; mangle all :list pod into proper lists via L<Pod::Elemental::Transformer::List>
 	transformer = List
+	[-Encoding]			; add the =encoding command to your POD
+	encoding = utf-8
+	[-EnsureUniqueSections]		; sanity check your sections to make sure they are unique
 
 =head1 Future Plans
 
@@ -150,14 +172,7 @@ Maybe we can make a transformer to automatically do that? ( =image http://blah.c
 <Apocalypse> i.e. link to http://cpansearch.perl.org/src/WONKO/Smolder-1.51/misc/image.png
 <Apocalypse> I should try that sneaky tactic and see if it works =]
 
-=head2 Encoding support?
-
-L<Pod::Weaver::Plugin::Encoding> looks cool. Can it be updated to auto-detect the encoding of the POD? Is it really necessary? FLORA uses it, so it
-must be useful, ha! :)
-
 =head2 add more modules?
-
-Should we add L<Pod::Weaver::Plugin::EnsureUniqueSections>?
 
 Also, is L<Pod::Weaver::Section::WarrantyDisclaimer> needed? Does our Legal section do a good enough job?
 
