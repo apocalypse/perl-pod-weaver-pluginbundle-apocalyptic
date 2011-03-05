@@ -14,7 +14,7 @@ use Pod::Elemental::Transformer::List 0.101620;
 
 # TODO follow up on those local patches:
 # Section::WarrantyDisclaimer - specify the warranty version ( https://github.com/DarwinAwardWinner/Pod-Weaver-Section-WarrantyDisclaimer/pull/1 )
-# Section::Legal - add extra line about LICENSE ( https://github.com/rjbs/pod-weaver/pull/3 )
+# Section::Legal - add extra line about LICENSE ( https://github.com/rjbs/pod-weaver/pull/4 )
 
 sub _exp {
 	Pod::Weaver::Config::Assembler->expand_package( $_[0] );
@@ -84,10 +84,12 @@ sub mvp_bundle_config {
 			header		=> 'ACKNOWLEDGEMENTS',
 		} ],
 		[ '@Apocalyptic/Legal',		_exp('Legal'), {
-			license_file	=> 'LICENSE',
+			# TODO wait for a version that includes this
+			#license_file	=> 'LICENSE',
 		} ],
 		[ '@Apocalyptic/Warranty',	_exp('WarrantyDisclaimer'), {
-			warranty	=> 'GPL_3',
+			# TODO wait for a version that includes this
+			#warranty	=> 'GPL_3',
 		} ],
 
 		# Mangle the entire POD
