@@ -26,6 +26,9 @@ sub mvp_bundle_config {
 		[ '@Apocalyptic/CorePrep',	_exp('@CorePrep'), {} ],
 
 		# Move our special markers to the start of the POD
+		[ '@Apocalyptic/Encoding',	_exp('-Encoding'), {
+			encoding	=> 'utf-8',
+		} ],
 		[ '@Apocalyptic/PodCoverage',	_exp('Region'), {
 			region_name	=> 'Pod::Coverage',
 			allow_nonpod	=> 1,
@@ -91,10 +94,7 @@ sub mvp_bundle_config {
 		[ '@Apocalyptic/ListTransformer',	_exp('-Transformer'), {
 			transformer	=> 'List',
 		} ],
-		[ '@Apocalyptic/Encoding',		_exp('-Encoding'), {
-			encoding	=> 'utf-8',
-		} ],
-		[ '@Apocalyptic/UniqSections',		_exp('-EnsureUniqueSections'), {} ],
+		[ '@Apocalyptic/UniqueSections',	_exp('-EnsureUniqueSections'), {} ],
 	);
 }
 
