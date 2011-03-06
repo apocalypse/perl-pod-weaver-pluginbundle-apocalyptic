@@ -32,7 +32,7 @@ sub mvp_bundle_config {
 			allow_nonpod	=> 1,
 			flatten		=> 0,
 		} ],
-		[ '@Apocalyptic/StopWords',	_exp('StopWords'), {} ],
+		[ '@Apocalyptic/StopWords',	_exp('-StopWords'), {} ],
 
 		# Start the POD!
 		[ '@Apocalyptic/Name',		_exp('Name'), {} ],
@@ -122,7 +122,7 @@ It is nearly equivalent to the following in your F<weaver.ini>:
 	[-Encoding]			; add the =encoding command to your POD via Pod::Weaver::Plugin::Encoding
 	encoding = utf-8
 	[Region / Pod::Coverage]	; move any Pod::Coverage markers to the top ( =for Pod::Coverage foo bar )
-	[StopWords]			; gather our stopwords and add some extra ones via Pod::Weaver::Section::StopWords
+	[-StopWords]			; gather our stopwords and add some extra ones via Pod::Weaver::Plugin::StopWords
 
 	[Name]				; automatically generate the NAME section
 	[Version]			; automatically generate the VERSION section
@@ -163,7 +163,7 @@ If you need something to be configurable ( probably the Support section, ha! ) p
 Dist::Zilla
 Pod::Weaver
 Pod::Weaver::Plugin::Encoding
-Pod::Weaver::Section::StopWords
+Pod::Weaver::Plugin::StopWords
 Pod::Weaver::Section::SeeAlso
 Pod::Weaver::Section::Support
 Pod::Weaver::Section::WarrantyDisclaimer
