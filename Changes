@@ -2,6 +2,11 @@ Revision history for Pod::Weaver::PluginBundle::Apocalyptic
 
 {{$NEXT}}
 
+0.002
+	Released: 2011-03-06 00:47:18 UTC
+
+	Fix a bad typo when loading StopWords, d0h!
+
 0.001
 	Released: 2011-03-06 00:40:43 UTC
 
