@@ -4,10 +4,10 @@ package Pod::Weaver::PluginBundle::Apocalyptic;
 
 # The plugins we use ( excluding ones bundled in podweaver )
 use Pod::Weaver::Config::Assembler 3.101632;	# basically sets the pod-weaver version
-use Pod::Weaver::Section::SeeAlso 0.001;
-use Pod::Weaver::Section::Support 1.002;
+use Pod::Weaver::Section::SeeAlso 1.002;
+use Pod::Weaver::Section::Support 1.003;
 use Pod::Weaver::Section::WarrantyDisclaimer 0.103511;
-use Pod::Weaver::Plugin::StopWords 1.000001;
+use Pod::Weaver::Plugin::StopWords 1.001005;
 use Pod::Weaver::Plugin::Encoding 0.01;
 use Pod::Weaver::Plugin::EnsureUniqueSections 0.103531;
 use Pod::Elemental::Transformer::List 0.101620;
@@ -26,9 +26,7 @@ sub mvp_bundle_config {
 		[ '@Apocalyptic/CorePrep',	_exp('@CorePrep'), {} ],
 
 		# Move our special markers to the start of the POD
-		[ '@Apocalyptic/Encoding',	_exp('-Encoding'), {
-			encoding	=> 'utf-8',
-		} ],
+		[ '@Apocalyptic/Encoding',	_exp('-Encoding'), {} ],
 		[ '@Apocalyptic/PodCoverage',	_exp('Region'), {
 			region_name	=> 'Pod::Coverage',
 			allow_nonpod	=> 1,
@@ -106,14 +104,25 @@ sub mvp_bundle_config {
 
 =head1 DESCRIPTION
 
+In your F<weaver.ini>:
+
+	[@Apocalyptic]
+
+Or alternatively, in your L<Dist::Zilla> dist's F<dist.ini>:
+
+	[PodWeaver]
+	config_plugin = @Apocalyptic
+
 This plugin bundle formats your POD and adds some sections and sets some custom options. Naturally, in order for
 most of the plugins to work, you need to use this in conjunction with L<Dist::Zilla>.
 
 It is nearly equivalent to the following in your F<weaver.ini>:
 
 	[@CorePrep]			; setup the pod stuff
+	[-Encoding]			; add the =encoding command to your POD via Pod::Weaver::Plugin::Encoding
+	encoding = utf-8
 	[Region / Pod::Coverage]	; move any Pod::Coverage markers to the top ( =for Pod::Coverage foo bar )
-	[StopWords]			; gather our stopwords and add some extra ones
+	[StopWords]			; gather our stopwords and add some extra ones via Pod::Weaver::Section::StopWords
 
 	[Name]				; automatically generate the NAME section
 	[Version]			; automatically generate the VERSION section
@@ -133,8 +142,8 @@ It is nearly equivalent to the following in your F<weaver.ini>:
 
 	[Leftovers]			; any other POD you use
 
-	[SeeAlso]			; generate the SEE ALSO section via L<Pod::Weaver::Section::SeeAlso>
-	[Support]			; generate the SUPPORT section via L<Pod::Weaver::Section::Support> ( only present in main module )
+	[SeeAlso]			; generate the SEE ALSO section via Pod::Weaver::Section::SeeAlso
+	[Support]			; generate the SUPPORT section via Pod::Weaver::Section::Support ( only present in main module )
 	irc = irc.perl.org, #perl-help, Apocalypse
 	irc = irc.freenode.net, #perl, Apocal
 	irc = irc.efnet.org, #perl, Ap0cal
@@ -142,15 +151,24 @@ It is nearly equivalent to the following in your F<weaver.ini>:
 	[Authors]			; automatically generate the AUTHOR(S) section
 	[Generic / ACKNOWLEDGEMENTS]	; move the ACKNOWLEDGEMENTS section here, if it exists
 	[Legal]				; automatically generate the COPYRIGHT AND LICENSE section
-	license_file = LICENSE
-	[WarrantyDisclaimer]		; automatically generate the DISCLAIMER OF WARRANTY section
-	warranty = GPL_3
+	[WarrantyDisclaimer]		; automatically generate the DISCLAIMER OF WARRANTY section via Pod::Weaver::Section::WarrantyDisclaimer
 
-	[-Transformer]			; mangle all :list pod into proper lists via L<Pod::Elemental::Transformer::List>
-	transformer = List
-	[-Encoding]			; add the =encoding command to your POD
-	encoding = utf-8
-	[-EnsureUniqueSections]		; sanity check your sections to make sure they are unique
+	[-Transformer]
+	transformer = List		; mangle all :list pod into proper lists via Pod::Elemental::Transformer::List
+	[-EnsureUniqueSections]		; sanity check your sections to make sure they are unique via Pod::Weaver::Plugin::EnsureUniqueSections
+
+If you need something to be configurable ( probably the Support section, ha! ) please let me know and I can add it in a future version.
+
+=head1 SEE ALSO
+Dist::Zilla
+Pod::Weaver
+Pod::Weaver::Plugin::Encoding
+Pod::Weaver::Section::StopWords
+Pod::Weaver::Section::SeeAlso
+Pod::Weaver::Section::Support
+Pod::Weaver::Section::WarrantyDisclaimer
+Pod::Elemental::Transformer::List
+Pod::Weaver::Plugin::EnsureUniqueSections
 
 =head1 Future Plans
 
@@ -173,9 +191,5 @@ Maybe we can make a transformer to automatically do that? ( =image http://blah.c
 <Apocalypse> i.e. include it in dist as My-Foo-Dist/misc/image.png and link to it via s.c.o's "browse dist" directory
 <Apocalypse> i.e. link to http://cpansearch.perl.org/src/WONKO/Smolder-1.51/misc/image.png
 <Apocalypse> I should try that sneaky tactic and see if it works =]
-
-=head2 add more modules?
-
-Also, is L<Pod::Weaver::Section::WarrantyDisclaimer> needed? Does our Legal section do a good enough job?
 
 =cut
