@@ -63,6 +63,10 @@ sub mvp_bundle_config {
 			header		=> 'FUNCTIONS',
 			command		=> 'func',
 		} ],
+		[ '@Apocalyptic/POEvents',	_exp('Collect'), {
+			header		=> 'POE Events',
+			command		=> 'event',
+		} ],
 
 		# Anything that wasn't matched gets dumped here
 		[ '@Apocalyptic/Leftovers',	_exp('Leftovers'), {} ],
@@ -133,12 +137,15 @@ It is nearly equivalent to the following in your F<weaver.ini>:
 	[Generic / DESCRIPTION]		; move the DESCRIPTION section here ( it is required to exist! )
 	required = 1
 
-	[Collect / ATTRIBUTES]		; get any POD marked as =attr and list them here
+	; get any POD marked with our special types and list them here
+	[Collect / ATTRIBUTES]
 	command = attr
-	[Collect / METHODS]		; get any POD marked as =method and list them here
+	[Collect / METHODS]
 	command = method
-	[Collect / FUNCTIONS]		; get any POD marked as =func and list them here
+	[Collect / FUNCTIONS]
 	command = func
+	[Collect / POE Events]
+	command = event
 
 	[Leftovers]			; any other POD you use
 
