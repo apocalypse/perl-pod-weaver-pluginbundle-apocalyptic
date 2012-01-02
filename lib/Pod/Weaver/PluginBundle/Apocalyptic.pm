@@ -6,7 +6,7 @@ package Pod::Weaver::PluginBundle::Apocalyptic;
 use Pod::Weaver::Config::Assembler 3.101634;	# basically sets the pod-weaver version
 use Pod::Weaver::Section::SeeAlso 1.002;
 use Pod::Weaver::Section::Support 1.003;
-use Pod::Weaver::Section::WarrantyDisclaimer 0.103511;
+use Pod::Weaver::Section::WarrantyDisclaimer 0.111290;
 use Pod::Weaver::Plugin::StopWords 1.001005;
 use Pod::Weaver::Plugin::Encoding 0.01;
 use Pod::Weaver::Plugin::EnsureUniqueSections 0.103531;
@@ -87,10 +87,9 @@ sub mvp_bundle_config {
 		[ '@Apocalyptic/Legal',		_exp('Legal'), {
 			license_file	=> 'LICENSE',
 		} ],
-		[ '@Apocalyptic/Warranty',	_exp('WarrantyDisclaimer'), {
-			# TODO wait for a version that includes this
-			#warranty	=> 'GPL_3',
-		} ],
+
+		# TODO Use the GPL3 warranty disclaimer by default ( make this configurable? )
+		[ '@Apocalyptic/Warranty',	_exp('WarrantyDisclaimer::GPL3'), {} ],
 
 		# Mangle the entire POD
 		[ '@Apocalyptic/ListTransformer',	_exp('-Transformer'), {
