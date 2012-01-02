@@ -12,9 +12,6 @@ use Pod::Weaver::Plugin::Encoding 0.01;
 use Pod::Weaver::Plugin::EnsureUniqueSections 0.103531;
 use Pod::Elemental::Transformer::List 0.101620;
 
-# TODO follow up on those local patches:
-# Section::WarrantyDisclaimer - specify the warranty version ( https://github.com/DarwinAwardWinner/Pod-Weaver-Section-WarrantyDisclaimer/pull/1 )
-
 sub _exp {
 	Pod::Weaver::Config::Assembler->expand_package( $_[0] );
 }
@@ -88,7 +85,7 @@ sub mvp_bundle_config {
 			license_file	=> 'LICENSE',
 		} ],
 
-		# TODO Use the GPL3 warranty disclaimer by default ( make this configurable? )
+		# Use the GPL3 warranty disclaimer by default
 		[ '@Apocalyptic/Warranty',	_exp('WarrantyDisclaimer::GPL3'), {} ],
 
 		# Mangle the entire POD
