@@ -3,7 +3,7 @@ package Pod::Weaver::PluginBundle::Apocalyptic;
 # ABSTRACT: Let the apocalypse generate your POD!
 
 # The plugins we use ( excluding ones bundled in podweaver )
-use Pod::Weaver::Config::Assembler 3.101632;	# basically sets the pod-weaver version
+use Pod::Weaver::Config::Assembler 3.101634;	# basically sets the pod-weaver version
 use Pod::Weaver::Section::SeeAlso 1.002;
 use Pod::Weaver::Section::Support 1.003;
 use Pod::Weaver::Section::WarrantyDisclaimer 0.103511;
@@ -14,7 +14,6 @@ use Pod::Elemental::Transformer::List 0.101620;
 
 # TODO follow up on those local patches:
 # Section::WarrantyDisclaimer - specify the warranty version ( https://github.com/DarwinAwardWinner/Pod-Weaver-Section-WarrantyDisclaimer/pull/1 )
-# Section::Legal - add extra line about LICENSE ( https://github.com/rjbs/pod-weaver/pull/4 )
 
 sub _exp {
 	Pod::Weaver::Config::Assembler->expand_package( $_[0] );
@@ -86,8 +85,7 @@ sub mvp_bundle_config {
 			header		=> 'ACKNOWLEDGEMENTS',
 		} ],
 		[ '@Apocalyptic/Legal',		_exp('Legal'), {
-			# TODO wait for a version that includes this
-			#license_file	=> 'LICENSE',
+			license_file	=> 'LICENSE',
 		} ],
 		[ '@Apocalyptic/Warranty',	_exp('WarrantyDisclaimer'), {
 			# TODO wait for a version that includes this
