@@ -78,7 +78,9 @@ sub mvp_bundle_config {
 			'email'		=> 'APOCAL',
 		} ],
 		[ '@Apocalyptic/Authors',	_exp('Authors'), {} ],
-		[ '@Apocalyptic/Contributors',	_exp('Contributors'), {} ],
+		[ '@Apocalyptic/Contributors',	_exp('Contributors'), {
+			'head'	=> 2,
+		} ],
 		[ '@Apocalyptic/ACK',		_exp('Generic'), {
 			header		=> 'ACKNOWLEDGEMENTS',
 		} ],
@@ -160,6 +162,13 @@ It is nearly equivalent to the following in your F<weaver.ini>:
 	[-EnsureUniqueSections]		; sanity check your sections to make sure they are unique via Pod::Weaver::Plugin::EnsureUniqueSections
 
 If you need something to be configurable ( probably the Support section, ha! ) please let me know and I can add it in a future version.
+
+Oh, the Contributors section is generated from the git history. In my case I had several email addresses that I used to commit in the past and I
+became a contributor to my own project! This was easily solved by fixing the git email addresses via the '.mailmap' file:
+
+	apoc@box:~/eclipse_ws/perl-pod-weaver-pluginbundle-apocalyptic$ cat .mailmap
+	Apocalypse <APOCAL@cpan.org> <apocalypse@users.noreply.github.com>
+	Apocalypse <APOCAL@cpan.org> <perl@0ne.us>
 
 =head1 SEE ALSO
 Dist::Zilla
