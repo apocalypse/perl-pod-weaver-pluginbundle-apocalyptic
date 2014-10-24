@@ -3,7 +3,7 @@ package Pod::Weaver::PluginBundle::Apocalyptic;
 # ABSTRACT: Let the apocalypse generate your POD!
 
 # The plugins we use ( excluding ones bundled in podweaver )
-use Pod::Weaver::Config::Assembler 3.101634;	# basically sets the pod-weaver version
+use Pod::Weaver::Config::Assembler 4.001;	# basically sets the pod-weaver version
 use Pod::Weaver::Section::SeeAlso 1.002;
 use Pod::Weaver::Section::Support 1.003;
 use Pod::Weaver::Section::WarrantyDisclaimer 0.111290;
