@@ -8,7 +8,6 @@ use Pod::Weaver::Section::SeeAlso 1.002;
 use Pod::Weaver::Section::Support 1.003;
 use Pod::Weaver::Section::WarrantyDisclaimer 0.111290;
 use Pod::Weaver::Plugin::StopWords 1.001005;
-use Pod::Weaver::Plugin::Encoding 0.01;
 use Pod::Weaver::Plugin::EnsureUniqueSections 0.103531;
 use Pod::Elemental::Transformer::List 0.101620;
 
@@ -22,8 +21,8 @@ sub mvp_bundle_config {
 		[ '@Apocalyptic/CorePrep',	_exp('@CorePrep'), {} ],
 
 		# Move our special markers to the start of the POD
-		[ '@Apocalyptic/Encoding',	_exp('-Encoding'), {} ],
-		[ '@Apocalyptic/PodCoverage',	_exp('Region'), {
+		[ '@Apocalyptic/SingleEncoding', _exp('-SingleEncoding'), {} ],
+		[ '@Apocalyptic/PodCoverage',    _exp('Region'), {
 			region_name	=> 'Pod::Coverage',
 			allow_nonpod	=> 1,
 			flatten		=> 0,
@@ -117,8 +116,7 @@ most of the plugins to work, you need to use this in conjunction with L<Dist::Zi
 It is nearly equivalent to the following in your F<weaver.ini>:
 
 	[@CorePrep]			; setup the pod stuff
-	[-Encoding]			; add the =encoding command to your POD via Pod::Weaver::Plugin::Encoding
-	encoding = utf-8
+	[-SingleEncoding]		; add the =encoding command to your Pod
 	[Region / Pod::Coverage]	; move any Pod::Coverage markers to the top ( =for Pod::Coverage foo bar )
 	[-StopWords]			; gather our stopwords and add some extra ones via Pod::Weaver::Plugin::StopWords
 
@@ -163,7 +161,6 @@ If you need something to be configurable ( probably the Support section, ha! ) p
 =head1 SEE ALSO
 Dist::Zilla
 Pod::Weaver
-Pod::Weaver::Plugin::Encoding
 Pod::Weaver::Plugin::StopWords
 Pod::Weaver::Section::SeeAlso
 Pod::Weaver::Section::Support
