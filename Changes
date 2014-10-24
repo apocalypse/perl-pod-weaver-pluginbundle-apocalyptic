@@ -5,19 +5,16 @@ Revision history for Pod::Weaver::PluginBundle::Apocalyptic
 	Switch to Pod::Weaver::Plugin::SingleEncoding, thanks Sergey github#1
 	Use Pod::Weaver::Section::Contributors
 
-0.003
-	Released: 2012-01-03 01:48:22 UTC
+0.003	2012-01-03 01:48:22 UTC
 
 	Add POE events autoheader ( use =event )
 	Use the license_file option for Section::Legal
 	Use the GPL3 subclass of Section::WarrantyDisclaimer
 
-0.002
-	Released: 2011-03-06 00:47:18 UTC
+0.002	2011-03-06 00:47:18 UTC
 
 	Fix a bad typo when loading StopWords, d0h!
 
-0.001
-	Released: 2011-03-06 00:40:43 UTC
+0.001	2011-03-06 00:40:43 UTC
 
 	initial release
