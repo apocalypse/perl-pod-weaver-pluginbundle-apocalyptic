@@ -64,6 +64,7 @@ It is nearly equivalent to the following in your F<weaver.ini>:
 	irc = irc.efnet.org, #perl, Ap0cal
 	email = APOCAL
 	[Authors]			; automatically generate the AUTHOR(S) section
+	[Contributors]			; automatically generate the CONTRIBUTOR(S) section via Dist::Zilla::Plugin::ContributorsFromGit
 	[Generic / ACKNOWLEDGEMENTS]	; move the ACKNOWLEDGEMENTS section here, if it exists
 	[Legal]				; automatically generate the COPYRIGHT AND LICENSE section
 	[WarrantyDisclaimer]		; automatically generate the DISCLAIMER OF WARRANTY section via Pod::Weaver::Section::WarrantyDisclaimer
@@ -286,6 +287,12 @@ L<https://github.com/apocalypse/perl-pod-weaver-pluginbundle-apocalyptic>
 =head1 AUTHOR
 
 Apocalypse <APOCAL@cpan.org>
+
+=head1 CONTRIBUTOR
+
+=for stopwords Sergey Romanov
+
+Sergey Romanov <complefor@rambler.ru>
 
 =head1 COPYRIGHT AND LICENSE
 
