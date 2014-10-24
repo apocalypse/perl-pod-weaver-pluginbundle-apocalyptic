@@ -153,6 +153,7 @@ It is nearly equivalent to the following in your F<weaver.ini>:
 	email = APOCAL
 	[Authors]			; automatically generate the AUTHOR(S) section
 	[Contributors]			; automatically generate the CONTRIBUTOR(S) section via Dist::Zilla::Plugin::ContributorsFromGit
+	head = 2
 	[Generic / ACKNOWLEDGEMENTS]	; move the ACKNOWLEDGEMENTS section here, if it exists
 	[Legal]				; automatically generate the COPYRIGHT AND LICENSE section
 	[WarrantyDisclaimer]		; automatically generate the DISCLAIMER OF WARRANTY section via Pod::Weaver::Section::WarrantyDisclaimer
@@ -172,13 +173,6 @@ became a contributor to my own project! This was easily solved by fixing the git
 
 =head1 SEE ALSO
 Dist::Zilla
-Pod::Weaver
-Pod::Weaver::Plugin::StopWords
-Pod::Weaver::Section::SeeAlso
-Pod::Weaver::Section::Support
-Pod::Weaver::Section::WarrantyDisclaimer
-Pod::Elemental::Transformer::List
-Pod::Weaver::Plugin::EnsureUniqueSections
 
 =head1 Future Plans
 
