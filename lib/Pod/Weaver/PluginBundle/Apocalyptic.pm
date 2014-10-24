@@ -10,6 +10,7 @@ use Pod::Weaver::Section::WarrantyDisclaimer 0.111290;
 use Pod::Weaver::Plugin::StopWords 1.001005;
 use Pod::Weaver::Plugin::EnsureUniqueSections 0.103531;
 use Pod::Elemental::Transformer::List 0.101620;
+use Pod::Weaver::Section::Contributors 0.008;
 
 sub _exp {
 	Pod::Weaver::Config::Assembler->expand_package( $_[0] );
@@ -77,6 +78,7 @@ sub mvp_bundle_config {
 			'email'		=> 'APOCAL',
 		} ],
 		[ '@Apocalyptic/Authors',	_exp('Authors'), {} ],
+		[ '@Apocalyptic/Contributors',	_exp('Contributors'), {} ],
 		[ '@Apocalyptic/ACK',		_exp('Generic'), {
 			header		=> 'ACKNOWLEDGEMENTS',
 		} ],
@@ -148,6 +150,7 @@ It is nearly equivalent to the following in your F<weaver.ini>:
 	irc = irc.efnet.org, #perl, Ap0cal
 	email = APOCAL
 	[Authors]			; automatically generate the AUTHOR(S) section
+	[Contributors]			; automatically generate the CONTRIBUTOR(S) section via Dist::Zilla::Plugin::ContributorsFromGit
 	[Generic / ACKNOWLEDGEMENTS]	; move the ACKNOWLEDGEMENTS section here, if it exists
 	[Legal]				; automatically generate the COPYRIGHT AND LICENSE section
 	[WarrantyDisclaimer]		; automatically generate the DISCLAIMER OF WARRANTY section via Pod::Weaver::Section::WarrantyDisclaimer
