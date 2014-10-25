@@ -13,7 +13,7 @@ Pod::Weaver::PluginBundle::Apocalyptic - Let the apocalypse generate your POD!
 
 =head1 VERSION
 
-  This document describes v0.004 of Pod::Weaver::PluginBundle::Apocalyptic - released October 23, 2014 as part of Pod-Weaver-PluginBundle-Apocalyptic.
+  This document describes v0.004 of Pod::Weaver::PluginBundle::Apocalyptic - released October 25, 2014 as part of Pod-Weaver-PluginBundle-Apocalyptic.
 
 =head1 DESCRIPTION
 
@@ -65,6 +65,7 @@ It is nearly equivalent to the following in your F<weaver.ini>:
 	email = APOCAL
 	[Authors]			; automatically generate the AUTHOR(S) section
 	[Contributors]			; automatically generate the CONTRIBUTOR(S) section via Dist::Zilla::Plugin::ContributorsFromGit
+	head = 2
 	[Generic / ACKNOWLEDGEMENTS]	; move the ACKNOWLEDGEMENTS section here, if it exists
 	[Legal]				; automatically generate the COPYRIGHT AND LICENSE section
 	[WarrantyDisclaimer]		; automatically generate the DISCLAIMER OF WARRANTY section via Pod::Weaver::Section::WarrantyDisclaimer
@@ -74,6 +75,13 @@ It is nearly equivalent to the following in your F<weaver.ini>:
 	[-EnsureUniqueSections]		; sanity check your sections to make sure they are unique via Pod::Weaver::Plugin::EnsureUniqueSections
 
 If you need something to be configurable ( probably the Support section, ha! ) please let me know and I can add it in a future version.
+
+Oh, the Contributors section is generated from the git history. In my case I had several email addresses that I used to commit in the past and I
+became a contributor to my own project! This was easily solved by fixing the git email addresses via the '.mailmap' file:
+
+	apoc@box:~/eclipse_ws/perl-pod-weaver-pluginbundle-apocalyptic$ cat .mailmap
+	Apocalypse <APOCAL@cpan.org> <apocalypse@users.noreply.github.com>
+	Apocalypse <APOCAL@cpan.org> <perl@0ne.us>
 
 =head1 Future Plans
 
@@ -107,34 +115,6 @@ Please see those modules/websites for more information related to this module.
 =item *
 
 L<Dist::Zilla|Dist::Zilla>
-
-=item *
-
-L<Pod::Weaver|Pod::Weaver>
-
-=item *
-
-L<Pod::Weaver::Plugin::StopWords|Pod::Weaver::Plugin::StopWords>
-
-=item *
-
-L<Pod::Weaver::Section::SeeAlso|Pod::Weaver::Section::SeeAlso>
-
-=item *
-
-L<Pod::Weaver::Section::Support|Pod::Weaver::Section::Support>
-
-=item *
-
-L<Pod::Weaver::Section::WarrantyDisclaimer|Pod::Weaver::Section::WarrantyDisclaimer>
-
-=item *
-
-L<Pod::Elemental::Transformer::List|Pod::Elemental::Transformer::List>
-
-=item *
-
-L<Pod::Weaver::Plugin::EnsureUniqueSections|Pod::Weaver::Plugin::EnsureUniqueSections>
 
 =back
 
@@ -288,7 +268,7 @@ L<https://github.com/apocalypse/perl-pod-weaver-pluginbundle-apocalyptic>
 
 Apocalypse <APOCAL@cpan.org>
 
-=head1 CONTRIBUTOR
+=head2 CONTRIBUTOR
 
 =for stopwords Sergey Romanov
 

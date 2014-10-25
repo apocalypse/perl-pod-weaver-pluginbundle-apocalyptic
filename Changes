@@ -2,6 +2,8 @@ Revision history for Pod::Weaver::PluginBundle::Apocalyptic
 
 {{$NEXT}}
 
+0.004	2014-10-25 20:40:18 UTC
+
 	Switch to Pod::Weaver::Plugin::SingleEncoding, thanks Sergey github#1
 	Use Pod::Weaver::Section::Contributors
 
